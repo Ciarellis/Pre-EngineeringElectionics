@@ -1,0 +1,95 @@
+int buzzerPin = 8;
+int led1 = 7;
+int led2 = 2;
+int led3 = 3;
+int led4 = 4;
+int led5 = 5;
+int led6 = 6;
+int sensorPin = A0; 
+int sensorValue = 0;  
+#include "pitches.h"
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(buzzerPin, OUTPUT);
+   pinMode(led1, OUTPUT);
+   pinMode(led2, OUTPUT);
+   pinMode(led3, OUTPUT);
+   pinMode(led4, OUTPUT);
+   pinMode(led5, OUTPUT);
+   pinMode(led6, OUTPUT);
+}
+void loop() {
+  sensorValue = analogRead(sensorPin);
+
+    Serial.println(analogRead(sensorPin));
+    if(sensorValue<50){
+      digitalWrite(led1, LOW);
+    }
+    else{
+        digitalWrite(led1, HIGH);
+    }
+     if(sensorValue>166){
+      digitalWrite(led2, HIGH);
+
+    }
+    else{
+        digitalWrite(led2, LOW);
+    }
+      if(sensorValue>333){
+      digitalWrite(led3, HIGH);
+
+    }
+    else{
+
+  digitalWrite(led3,LOW);
+    }
+      if(sensorValue>500){
+      digitalWrite(led4, HIGH);
+    }
+    else{
+    digitalWrite(led4, LOW);
+    }
+     if(sensorValue>664){
+      digitalWrite(led5, HIGH);
+
+    }
+    else{
+     digitalWrite(led5, LOW);
+    }
+      if(sensorValue>830){
+      digitalWrite(led6, HIGH);
+    }
+    else{
+    digitalWrite(led6, LOW);
+    }
+
+
+
+    if(sensorValue>50 && sensorValue<166){
+      tone(buzzerPin,440 );
+    }
+     else   if(sensorValue>166 && sensorValue<333){
+      tone(buzzerPin, 494);
+    }
+      else  if(sensorValue>333 && sensorValue<500){
+      tone(buzzerPin, 523);
+    }
+
+     else   if(sensorValue>500 && sensorValue<664){
+      tone(buzzerPin, 587);
+    }
+
+      else  if(sensorValue>664 && sensorValue<830){
+      tone(buzzerPin, 659);
+    }
+       else if(sensorValue>830){
+      tone(buzzerPin, 698);
+      }
+      else{
+        noTone(buzzerPin);
+      }
+      
+   
+
+}
